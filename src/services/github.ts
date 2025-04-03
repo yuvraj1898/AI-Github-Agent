@@ -16,7 +16,7 @@ export interface GitHubUser {
 
 class GitHubService {
   private token: string | null = null;
-  private clientId = "YOUR_GITHUB_CLIENT_ID"; // Replace with your actual Client ID
+  private clientId = "Ov23liJhNGTZSCc3nyi0"; // Updated with the provided Client ID
 
   constructor() {
     // Initialize token from localStorage if available
