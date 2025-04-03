@@ -1,4 +1,3 @@
-
 export interface GitHubRepository {
   id: number;
   name: string;
@@ -17,7 +16,7 @@ export interface GitHubUser {
 
 class GitHubService {
   private token: string | null = null;
-  private clientId = "YOUR_GITHUB_CLIENT_ID"; // Replace with your GitHub OAuth App client ID
+  private clientId = "YOUR_GITHUB_CLIENT_ID"; // Replace with your actual Client ID
 
   constructor() {
     // Initialize token from localStorage if available
