@@ -35,18 +35,9 @@ const GitHubCallback: React.FC = () => {
       }
 
       try {
-        // In a real application, you'd exchange this code for an access token
-        // using your backend since you don't want to expose your client secret in frontend code
-        
-        // IMPORTANT: This is a placeholder. In a real app, you would:
-        // 1. Send the code to your backend
-        // 2. Have your backend exchange it for a token using your client secret
-        // 3. Return the token to your frontend
-        
-        // For the demo, we're simulating the token exchange
-        // In a real app, replace this with an actual API call to your backend
-        const mockToken = `mock_${Math.random().toString(36).substring(2, 15)}`;
-        githubService.setToken(mockToken);
+        // Exchange the code for a token
+        const token = await githubService.exchangeCodeForToken(code);
+        githubService.setToken(token);
         
         toast({
           title: "Authentication Successful",

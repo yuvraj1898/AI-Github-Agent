@@ -44,6 +44,28 @@ class GitHubService {
     return `https://github.com/login/oauth/authorize?client_id=${this.clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
   }
 
+  async exchangeCodeForToken(code: string): Promise<string> {
+    // In a real application, this should be handled by your backend
+    // Since the client secret should not be exposed in frontend code
+    
+    // This is a placeholder for demonstration - in production, you would:
+    // 1. Send the code to your backend
+    // 2. Have backend exchange it for a token using client_id and client_secret
+    // 3. Return the token to frontend
+    
+    try {
+      // Simulating a backend request for demonstration purposes
+      console.log('Exchanging code for token:', code);
+      
+      // For demo purposes, we'll return a mock token
+      // In a real app, replace this with an actual fetch to your backend
+      return Promise.resolve(`github_token_${Date.now()}`);
+    } catch (error) {
+      console.error('Error exchanging code for token:', error);
+      throw new Error('Failed to authenticate with GitHub');
+    }
+  }
+
   async fetchUserProfile(): Promise<GitHubUser> {
     if (!this.token) {
       throw new Error('Not authenticated');
