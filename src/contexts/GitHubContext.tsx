@@ -1,5 +1,4 @@
-
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { githubService, GitHubUser, GitHubRepository } from '@/services/github';
 import { toast } from '@/hooks/use-toast';
 
@@ -57,7 +56,7 @@ export const GitHubProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     });
   };
 
-  const fetchRepositories = async () => {
+  const fetchRepositories = useCallback(async () => {
     if (!isAuthenticated) return;
 
     setLoading(true);
@@ -74,7 +73,14 @@ export const GitHubProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     } finally {
       setLoading(false);
     }
-  };
+  }, [isAuthenticated]);
+
+  // Fetch repositories only once when authenticated
+  useEffect(() => {
+    if (isAuthenticated && repositories.length === 0) {
+      fetchRepositories();
+    }
+  }, [isAuthenticated, fetchRepositories, repositories.length]);
 
   return (
     <GitHubContext.Provider

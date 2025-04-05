@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Search, FolderGit2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -33,12 +32,6 @@ const RepositoryList: React.FC<RepositoryListProps> = ({ onSelectionChange }) =>
   const { repositories, loading, fetchRepositories, isAuthenticated } = useGitHub();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRepositories, setSelectedRepositories] = useState<number[]>([]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      fetchRepositories();
-    }
-  }, [isAuthenticated, fetchRepositories]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);

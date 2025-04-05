@@ -47,18 +47,29 @@ class GitHubService {
     // In a real application, this should be handled by your backend
     // Since the client secret should not be exposed in frontend code
     
-    // This is a placeholder for demonstration - in production, you would:
-    // 1. Send the code to your backend
-    // 2. Have backend exchange it for a token using client_id and client_secret
-    // 3. Return the token to frontend
-    
     try {
-      // Simulating a backend request for demonstration purposes
-      console.log('Exchanging code for token:', code);
+      // Send the code to your backend to exchange it for a token
+      const response = await fetch('http://localhost:3000/auth/github/callback', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to exchange code for token');
+      }
+
+      const data = await response.json();
       
-      // For demo purposes, we'll return a mock token
-      // In a real app, replace this with an actual fetch to your backend
-      return Promise.resolve(`github_token_${Date.now()}`);
+      if (data.success && data.accessToken) {
+        // Store the token
+        this.setToken(data.accessToken);
+        return data.accessToken;
+      } else {
+        throw new Error(data.error || 'Failed to get access token');
+      }
     } catch (error) {
       console.error('Error exchanging code for token:', error);
       throw new Error('Failed to authenticate with GitHub');
