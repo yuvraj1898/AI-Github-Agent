@@ -1,0 +1,403 @@
+# Code Repository Analysis Report
+============================
+
+## Repository Information
+- **URL**: https://github.com/yuvraj1898/AI-Github-Agent.git
+- **Analysis Date**: 2025-04-09T10:58:36.745Z
+
+## README Content
+```markdown
+# Welcome to your Lovable project
+
+## Project info
+
+**URL**: https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
+
+**Edit a file directly in GitHub**
+
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
+
+**Use GitHub Codespaces**
+
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes it is!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+```
+
+
+## Main Purpose
+This is a code analysis tool that provides comprehensive technical analysis and insights for code repositories.
+It can clone repositories, analyze their code, and generate detailed technical reports.
+
+## Core Features
+1. **Repository Analysis**
+   - Supports JavaScript/TypeScript and Python codebases
+   - Analyzes code structure, dependencies, and patterns
+   - Generates comprehensive technical reports
+
+2. **Code Parsing**
+   - Uses Babel parser for JavaScript/TypeScript
+   - Custom parsing for Python files
+   - AST-based analysis for accurate code understanding
+
+3. **AI-Powered Analysis**
+   - Uses Groq's AI model (llama-4-scout-17b)
+   - Generates intelligent insights and recommendations
+   - Provides architectural and design pattern analysis
+
+4. **File Management**
+   - Repository cloning and file operations
+   - File content analysis and parsing
+   - Dependency tracking and management
+
+5. **Summary Generation**
+   - Creates detailed technical reports
+   - Includes code metrics and analysis
+   - Provides AI-generated insights
+
+## Technical Stack
+1. **Backend**
+   - Node.js with Express
+   - RESTful API architecture
+   - Asynchronous processing
+
+2. **Frontend**
+   - React with TailwindCSS
+   - Modern UI/UX design
+   - Responsive interface
+
+3. **AI & Analysis**
+   - Groq API for code analysis
+   - Babel parser and traverse
+   - Custom code analysis algorithms
+
+4. **Database**
+   - Pinecone for embeddings
+   - Code search and retrieval
+   - Vector-based similarity search
+
+## Key Components
+1. **Services**
+   - RepoAnalyzerService: Main analysis orchestrator
+   - CodeAnalyzerService: Code parsing and analysis
+   - githubService: Repository operations
+
+2. **API Endpoints**
+   - /analyze: Repository analysis
+   - /list-files: File listing
+   - /summary/:filename: Summary retrieval
+   - /api/chat: Chat functionality
+
+## Analysis Capabilities
+1. **Code Structure Analysis**
+   - Total Files: 82
+   - Total Functions: 14
+   - Total Classes: 1
+
+2. **Code Metrics**
+   - Total Lines of Code: 14628
+   - Average Function Complexity: 2.27
+   - Maintainability Index: 51.40
+
+3. **Dependencies**
+   - https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+   - https://github.com/nvm-sh/nvm#installing-and-updating
+   - https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide
+   - axios
+   - cors
+   - express
+   - @eslint/js
+   - globals
+   - eslint-plugin-react-hooks
+   - eslint-plugin-react-refresh
+   - typescript-eslint
+   - https://cdn.gpteng.co/gptengineer.js
+   - /src/main.tsx
+   - @hookform/resolvers
+   - @radix-ui/react-accordion
+   - @radix-ui/react-alert-dialog
+   - @radix-ui/react-aspect-ratio
+   - @radix-ui/react-avatar
+   - @radix-ui/react-checkbox
+   - @radix-ui/react-collapsible
+   - @radix-ui/react-context-menu
+   - @radix-ui/react-dialog
+   - @radix-ui/react-dropdown-menu
+   - @radix-ui/react-hover-card
+   - @radix-ui/react-label
+   - @radix-ui/react-menubar
+   - @radix-ui/react-navigation-menu
+   - @radix-ui/react-popover
+   - @radix-ui/react-progress
+   - @radix-ui/react-radio-group
+   - @radix-ui/react-scroll-area
+   - @radix-ui/react-select
+   - @radix-ui/react-separator
+   - @radix-ui/react-slider
+   - @radix-ui/react-slot
+   - @radix-ui/react-switch
+   - @radix-ui/react-tabs
+   - @radix-ui/react-toast
+   - @radix-ui/react-toggle
+   - @radix-ui/react-toggle-group
+   - @radix-ui/react-tooltip
+   - @tanstack/react-query
+   - class-variance-authority
+   - clsx
+   - cmdk
+   - date-fns
+   - embla-carousel-react
+   - input-otp
+   - lucide-react
+   - next-themes
+   - react
+   - react-day-picker
+   - react-dom
+   - react-hook-form
+   - react-resizable-panels
+   - react-router-dom
+   - recharts
+   - sonner
+   - tailwind-merge
+   - tailwindcss-animate
+   - vaul
+   - zod
+   - @tailwindcss/typography
+   - @types/node
+   - @types/react
+   - @types/react-dom
+   - @vitejs/plugin-react-swc
+   - autoprefixer
+   - eslint
+   - lovable-tagger
+   - postcss
+   - tailwindcss
+   - typescript
+   - vite
+   - @/components/ui/toaster
+   - @/components/ui/sonner
+   - @/components/ui/tooltip
+   - ./pages/Index
+   - ./pages/NotFound
+   - ./pages/GitHubCallback
+   - ./contexts/GitHubContext
+   - @/components/ui/textarea
+   - @/components/ui/button
+   - @/components/ui/card
+   - @/hooks/use-toast
+   - @/components/ui/input
+   - @/contexts/GitHubContext
+   - @/components/ui/avatar
+   - @/components/ui/dropdown-menu
+   - @/components/ui/checkbox
+   - @/components/ui/scroll-area
+   - @/lib/utils
+   - @/components/ui/dialog
+   - @/components/ui/label
+   - @/hooks/use-mobile
+   - @/components/ui/separator
+   - @/components/ui/sheet
+   - @/components/ui/skeleton
+   - @/components/ui/toast
+   - @/components/ui/toggle
+   - @/services/github
+   - react-dom/client
+   - ./App.tsx
+   - ./index.css
+   - @/components/Header
+   - @/components/RepositoryList
+   - @/components/AIPrompt
+   - @/components/CodePreview
+   - path
+
+4. **Main Components**
+   - GitHubService (8 methods, complexity: undefined) in temp_repos/AI-Github-Agent/src/services/github.ts
+
+5. **Design Patterns**
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+
+6. **Code Issues**
+   - Nested If Statements (warning) at Multiple locations
+   - Nested If Statements (warning) at Multiple locations
+
+## AI-Generated Analysis
+### 1. Main Purpose
+The main purpose of this repository is to provide an AI-powered GitHub agent that allows users to interact with GitHub repositories using natural language prompts. The agent is built using a combination of technologies such as React, TypeScript, and Vite, and is designed to simplify the process of working with GitHub repositories.
+
+### 2. Core Features
+The core features of this repository include:
+
+*   **Natural Language Prompting**: Users can interact with the agent using natural language prompts to perform various actions such as creating, editing, and deleting files, as well as managing repository settings.
+*   **GitHub Integration**: The agent is integrated with GitHub, allowing users to access and manage their repositories directly from the agent.
+*   **Code Editing**: The agent provides a code editing interface that allows users to edit and update files in their repositories.
+*   **Project Management**: The agent provides features for managing projects, including creating and editing project settings, and tracking project progress.
+
+### 3. Key Components
+The key components of this repository include:
+
+*   **GitHubService**: This component handles the integration with GitHub, providing methods for interacting with repositories and performing actions such as creating and editing files.
+*   **CodeEditor**: This component provides a code editing interface that allows users to edit and update files in their repositories.
+*   **ProjectManager**: This component provides features for managing projects, including creating and editing project settings, and tracking project progress.
+
+### 4. Output
+The output of this repository is an AI-powered GitHub agent that provides a user-friendly interface for interacting with GitHub repositories. The agent can perform various actions such as creating, editing, and deleting files, as well as managing repository settings.
+
+### 5. User Interface
+The user interface of this repository is a web-based application that provides a simple and intuitive interface for interacting with the agent. The interface includes features such as:
+
+*   **Prompt Input**: A text input field where users can enter natural language prompts to interact with the agent.
+*   **Code Editor**: A code editing interface that allows users to edit and update files in their repositories.
+*   **Project Manager**: A project management interface that allows users to create and edit project settings, and track project progress.
+
+Here is a high-level diagram of the application flow:
+```markdown
++---------------+
+|  User Input  |
++---------------+
+        |
+        |
+        v
++---------------+
+|  Natural Language  |
+|  Processing         |
++---------------+
+        |
+        |
+        v
++---------------+
+|  GitHub Service    |
+|  (Integration)    |
++---------------+
+        |
+        |
+        v
++---------------+
+|  Code Editor      |
+|  (Editing Interface)|
++---------------+
+        |
+        |
+        v
++---------------+
+|  Project Manager  |
+|  (Project Settings)|
++---------------+
+        |
+        |
+        v
++---------------+
+|  Output          |
+|  (Agent Response) |
++---------------+
+```
+
+### 6. Technical Stack
+The technical stack of this repository includes:
+
+*   **Frontend**: React, TypeScript, and Vite are used to build the user interface and handle client-side logic.
+*   **Backend**: The agent uses a combination of GitHub APIs and server-side logic to interact with GitHub repositories.
+*   **Libraries**: Various libraries such as `axios`, `cors`, and `express` are used to handle tasks such as HTTP requests and API integration.
+
+### 7. Code Quality
+The code quality of this repository is generally good, with a maintainability index of 51.40 and an average function complexity of 2.27. However, there are some areas for improvement, such as reducing nested if statements and improving code organization.
+
+### 8. Design Patterns
+The repository uses the Module Pattern extensively, which is a good practice for organizing code and reducing coupling. However, there are some areas where the code could be improved by using other design patterns such as the Singleton Pattern or the Factory Pattern.
+
+### 9. Code Issues
+The repository has some code issues, including:
+
+*   **Nested If Statements**: There are several locations where nested if statements are used, which can make the code harder to read and maintain.
+*   **Code Duplication**: There are some areas where code is duplicated, which can make it harder to maintain and update the codebase.
+
+To address these issues, the following solutions can be implemented:
+
+*   **Refactor Nested If Statements**: Refactor the code to reduce nested if statements and improve code readability.
+*   **Remove Code Duplication**: Remove duplicated code and extract common logic into reusable functions or modules.
+
+### 10. Strengths
+The notable strengths of this codebase include:
+
+*   **Modular Organization**: The code is organized into modular components, which makes it easier to maintain and update.
+*   **Extensive Use of Design Patterns**: The code uses design patterns such as the Module Pattern, which helps to reduce coupling and improve code organization.
+
+### 11. Improvement Opportunities
+There are several areas where the codebase could be improved, including:
+
+*   **Scalability**: The codebase could be improved to handle larger-scale applications and user bases.
+*   **Maintainability**: The codebase could be improved to make it easier to maintain and update, such as by reducing code duplication and improving code organization.
+*   **Best Practices**: The codebase could be improved to follow best practices such as using more descriptive variable names and improving code commenting.
+
+### 12. Recommendations
+To enhance the codebase, the following recommendations can be implemented:
+
+*   **Refactor Code**: Refactor the code to improve organization, reduce duplication, and improve maintainability.
+*   **Implement Best Practices**: Implement best practices such as using more descriptive variable names and improving code commenting.
+*   **Improve Testing**: Improve testing to ensure that the codebase is thoroughly tested and validated.
+*   **Use More Advanced Design Patterns**: Use more advanced design patterns such as the Singleton Pattern or the Factory Pattern to improve code organization and reduce coupling.
+
+---
+Generated by AI Code Analyzer on 2025-04-09T10:58:36.745Z

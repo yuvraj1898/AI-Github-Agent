@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
-import { githubService, GitHubUser, GitHubRepository } from '@/services/github';
+import { githubService, GitHubUser, GitHubRepository, GitHubRepositoryFile } from '@/services/github';
 import { toast } from '@/hooks/use-toast';
 
 interface GitHubContextProps {
@@ -10,6 +10,7 @@ interface GitHubContextProps {
   login: () => void;
   logout: () => void;
   fetchRepositories: () => Promise<void>;
+  fetchRepositoryFiles: (owner: string, repo: string, path?: string) => Promise<GitHubRepositoryFile[]>;
 }
 
 const GitHubContext = createContext<GitHubContextProps | undefined>(undefined);
@@ -75,6 +76,22 @@ export const GitHubProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     }
   }, [isAuthenticated]);
 
+  const fetchRepositoryFiles = useCallback(async (owner: string, repo: string, path: string = '') => {
+    if (!isAuthenticated) return [];
+
+    try {
+      return await githubService.fetchRepositoryFiles(owner, repo, path);
+    } catch (error) {
+      console.error('Failed to fetch repository files:', error);
+      toast({
+        title: "Error",
+        description: "Failed to fetch repository files",
+        variant: "destructive",
+      });
+      return [];
+    }
+  }, [isAuthenticated]);
+
   // Fetch repositories only once when authenticated
   useEffect(() => {
     if (isAuthenticated && repositories.length === 0) {
@@ -92,6 +109,7 @@ export const GitHubProvider: React.FC<{ children: ReactNode }> = ({ children }) 
         login,
         logout,
         fetchRepositories,
+        fetchRepositoryFiles,
       }}
     >
       {children}

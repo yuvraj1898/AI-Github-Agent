@@ -1,0 +1,398 @@
+# Code Repository Analysis Report
+============================
+
+## Repository Information
+- **URL**: https://github.com/yuvraj1898/AI-Github-Agent.git
+- **Analysis Date**: 2025-04-09T11:00:07.554Z
+
+## README Content
+```markdown
+# Welcome to your Lovable project
+
+## Project info
+
+**URL**: https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
+
+**Edit a file directly in GitHub**
+
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
+
+**Use GitHub Codespaces**
+
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes it is!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+```
+
+
+## Main Purpose
+This is a code analysis tool that provides comprehensive technical analysis and insights for code repositories.
+It can clone repositories, analyze their code, and generate detailed technical reports.
+
+## Core Features
+1. **Repository Analysis**
+   - Supports JavaScript/TypeScript and Python codebases
+   - Analyzes code structure, dependencies, and patterns
+   - Generates comprehensive technical reports
+
+2. **Code Parsing**
+   - Uses Babel parser for JavaScript/TypeScript
+   - Custom parsing for Python files
+   - AST-based analysis for accurate code understanding
+
+3. **AI-Powered Analysis**
+   - Uses Groq's AI model (llama-4-scout-17b)
+   - Generates intelligent insights and recommendations
+   - Provides architectural and design pattern analysis
+
+4. **File Management**
+   - Repository cloning and file operations
+   - File content analysis and parsing
+   - Dependency tracking and management
+
+5. **Summary Generation**
+   - Creates detailed technical reports
+   - Includes code metrics and analysis
+   - Provides AI-generated insights
+
+## Technical Stack
+1. **Backend**
+   - Node.js with Express
+   - RESTful API architecture
+   - Asynchronous processing
+
+2. **Frontend**
+   - React with TailwindCSS
+   - Modern UI/UX design
+   - Responsive interface
+
+3. **AI & Analysis**
+   - Groq API for code analysis
+   - Babel parser and traverse
+   - Custom code analysis algorithms
+
+4. **Database**
+   - Pinecone for embeddings
+   - Code search and retrieval
+   - Vector-based similarity search
+
+## Key Components
+1. **Services**
+   - RepoAnalyzerService: Main analysis orchestrator
+   - CodeAnalyzerService: Code parsing and analysis
+   - githubService: Repository operations
+
+2. **API Endpoints**
+   - /analyze: Repository analysis
+   - /list-files: File listing
+   - /summary/:filename: Summary retrieval
+   - /api/chat: Chat functionality
+
+## Analysis Capabilities
+1. **Code Structure Analysis**
+   - Total Files: 82
+   - Total Functions: 14
+   - Total Classes: 1
+
+2. **Code Metrics**
+   - Total Lines of Code: 14628
+   - Average Function Complexity: 2.27
+   - Maintainability Index: 51.40
+
+3. **Dependencies**
+   - https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+   - https://github.com/nvm-sh/nvm#installing-and-updating
+   - https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide
+   - axios
+   - cors
+   - express
+   - @eslint/js
+   - globals
+   - eslint-plugin-react-hooks
+   - eslint-plugin-react-refresh
+   - typescript-eslint
+   - https://cdn.gpteng.co/gptengineer.js
+   - /src/main.tsx
+   - @hookform/resolvers
+   - @radix-ui/react-accordion
+   - @radix-ui/react-alert-dialog
+   - @radix-ui/react-aspect-ratio
+   - @radix-ui/react-avatar
+   - @radix-ui/react-checkbox
+   - @radix-ui/react-collapsible
+   - @radix-ui/react-context-menu
+   - @radix-ui/react-dialog
+   - @radix-ui/react-dropdown-menu
+   - @radix-ui/react-hover-card
+   - @radix-ui/react-label
+   - @radix-ui/react-menubar
+   - @radix-ui/react-navigation-menu
+   - @radix-ui/react-popover
+   - @radix-ui/react-progress
+   - @radix-ui/react-radio-group
+   - @radix-ui/react-scroll-area
+   - @radix-ui/react-select
+   - @radix-ui/react-separator
+   - @radix-ui/react-slider
+   - @radix-ui/react-slot
+   - @radix-ui/react-switch
+   - @radix-ui/react-tabs
+   - @radix-ui/react-toast
+   - @radix-ui/react-toggle
+   - @radix-ui/react-toggle-group
+   - @radix-ui/react-tooltip
+   - @tanstack/react-query
+   - class-variance-authority
+   - clsx
+   - cmdk
+   - date-fns
+   - embla-carousel-react
+   - input-otp
+   - lucide-react
+   - next-themes
+   - react
+   - react-day-picker
+   - react-dom
+   - react-hook-form
+   - react-resizable-panels
+   - react-router-dom
+   - recharts
+   - sonner
+   - tailwind-merge
+   - tailwindcss-animate
+   - vaul
+   - zod
+   - @tailwindcss/typography
+   - @types/node
+   - @types/react
+   - @types/react-dom
+   - @vitejs/plugin-react-swc
+   - autoprefixer
+   - eslint
+   - lovable-tagger
+   - postcss
+   - tailwindcss
+   - typescript
+   - vite
+   - @/components/ui/toaster
+   - @/components/ui/sonner
+   - @/components/ui/tooltip
+   - ./pages/Index
+   - ./pages/NotFound
+   - ./pages/GitHubCallback
+   - ./contexts/GitHubContext
+   - @/components/ui/textarea
+   - @/components/ui/button
+   - @/components/ui/card
+   - @/hooks/use-toast
+   - @/components/ui/input
+   - @/contexts/GitHubContext
+   - @/components/ui/avatar
+   - @/components/ui/dropdown-menu
+   - @/components/ui/checkbox
+   - @/components/ui/scroll-area
+   - @/lib/utils
+   - @/components/ui/dialog
+   - @/components/ui/label
+   - @/hooks/use-mobile
+   - @/components/ui/separator
+   - @/components/ui/sheet
+   - @/components/ui/skeleton
+   - @/components/ui/toast
+   - @/components/ui/toggle
+   - @/services/github
+   - react-dom/client
+   - ./App.tsx
+   - ./index.css
+   - @/components/Header
+   - @/components/RepositoryList
+   - @/components/AIPrompt
+   - @/components/CodePreview
+   - path
+
+4. **Main Components**
+   - GitHubService (8 methods, complexity: undefined) in temp_repos/AI-Github-Agent/src/services/github.ts
+
+5. **Design Patterns**
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+
+6. **Code Issues**
+   - Nested If Statements (warning) at Multiple locations
+   - Nested If Statements (warning) at Multiple locations
+
+## AI-Generated Analysis
+### 1. Main Purpose
+
+The main purpose of this repository is to provide an AI-powered GitHub agent that allows users to interact with their GitHub repositories using natural language prompts. The repository is part of the Lovable platform, which enables users to create, edit, and deploy web applications using a combination of AI-powered tools and a visual interface. The problem it solves is to simplify the process of managing GitHub repositories and automate tasks using AI-powered agents.
+
+### 2. Core Features
+
+The core features of this repository include:
+
+*   **AI-powered GitHub agent**: The repository provides an AI-powered agent that can interact with GitHub repositories using natural language prompts.
+*   **Repository management**: The agent can manage GitHub repositories, including creating, editing, and deleting files, as well as handling pull requests and issues.
+*   **Automated tasks**: The agent can automate tasks such as code formatting, testing, and deployment.
+*   **Integration with Lovable**: The repository is integrated with the Lovable platform, which provides a visual interface for creating, editing, and deploying web applications.
+
+### 3. Key Components
+
+The key components of this repository include:
+
+*   **GitHubService**: This is the main component that handles the interaction with the GitHub API. It provides methods for creating, editing, and deleting files, as well as handling pull requests and issues.
+*   **AIModel**: This component is responsible for processing natural language prompts and generating responses.
+*   **LovableIntegration**: This component handles the integration with the Lovable platform, including authentication and API calls.
+
+### 4. Output
+
+The output of this repository is a web application that provides an interface for users to interact with their GitHub repositories using natural language prompts. The application can perform a variety of tasks, including:
+
+*   **Creating and editing files**: The application can create and edit files in a GitHub repository using natural language prompts.
+*   **Handling pull requests and issues**: The application can handle pull requests and issues in a GitHub repository using natural language prompts.
+*   **Automating tasks**: The application can automate tasks such as code formatting, testing, and deployment.
+
+### 5. User Interface
+
+The user interface of this application is a web-based interface that provides a text input field for users to enter natural language prompts. The application responds to the prompts by performing the requested actions on the GitHub repository. The flow of the application can be represented by the following diagram:
+
+```mermaid
+graph LR
+    A[User] -->|Enter prompt|> B[Application]
+    B -->|Process prompt|> C[AIModel]
+    C -->|Generate response|> B
+    B -->|Perform action|> D[GitHubRepository]
+    D -->|Return result|> B
+    B -->|Display result|> A
+```
+
+### 6. Technical Stack
+
+The technical stack used in this repository includes:
+
+*   **Frontend**: The frontend is built using React, with a combination of JavaScript and TypeScript.
+*   **Backend**: The backend is built using Node.js, with a combination of JavaScript and TypeScript.
+*   **Database**: The database is not explicitly mentioned, but it is likely a cloud-based database such as MongoDB or PostgreSQL.
+*   **AI Model**: The AI model is not explicitly mentioned, but it is likely a machine learning model built using a library such as TensorFlow or PyTorch.
+*   **GitHub API**: The application uses the GitHub API to interact with GitHub repositories.
+
+### 7. Code Quality
+
+The code quality of this repository can be assessed based on the metrics provided:
+
+*   **Complexity**: The average function complexity is 2.27, which is relatively low. This indicates that the code is well-organized and easy to maintain.
+*   **Maintainability**: The average maintainability index is 51.40, which is relatively low. This indicates that the code may require some refactoring to improve its maintainability.
+*   **Test coverage**: The test coverage is not explicitly mentioned, but it is likely that the application has a good test coverage given its complexity.
+
+### 8. Design Patterns
+
+The design patterns used in this repository include:
+
+*   **Module pattern**: The application uses the module pattern to organize its code into separate modules.
+*   **Singleton pattern**: The application may use the singleton pattern to manage its GitHub API connections.
+
+To improve the design patterns, the following suggestions can be made:
+
+*   **Use a more robust architecture**: The application can benefit from a more robust architecture, such as a microservices architecture, to improve its scalability and maintainability.
+*   **Use design patterns**: The application can benefit from using design patterns such as the factory pattern, observer pattern, and strategy pattern to improve its maintainability and scalability.
+
+### 9. Code Issues
+
+The code issues identified in this repository include:
+
+*   **Nested if statements**: The application has nested if statements, which can make the code harder to read and maintain.
+*   **Lack of error handling**: The application may not have adequate error handling, which can make it prone to errors and crashes.
+
+To address these issues, the following suggestions can be made:
+
+*   **Refactor the code**: The code can be refactored to reduce the nesting of if statements and improve its readability.
+*   **Add error handling**: The application can benefit from adding error handling to make it more robust and reliable.
+
+### 10. Strengths
+
+The notable strengths of this codebase include:
+
+*   **Well-organized code**: The code is well-organized and easy to maintain.
+*   **Good use of design patterns**: The application uses design patterns such as the module pattern to improve its maintainability.
+*   **Good test coverage**: The application has a good test coverage, which indicates that it is reliable and stable.
+
+### 11. Improvement Opportunities
+
+The areas that could be improved in this codebase include:
+
+*   **Scalability**: The application can benefit from a more robust architecture to improve its scalability.
+*   **Maintainability**: The application can benefit from refactoring its code to improve its maintainability.
+*   **Error handling**: The application can benefit from adding error handling to make it more robust and reliable.
+
+### 12. Recommendations
+
+The specific, actionable recommendations for enhancing this codebase include:
+
+*   **Refactor the code**: Refactor the code to reduce the nesting of if statements and improve its readability.
+*   **Add error handling**: Add error handling to make the application more robust and reliable.
+*   **Improve test coverage**: Improve the test coverage to ensure that the application is reliable and stable.
+*   **Use a more robust architecture**: Use a more robust architecture, such as a microservices architecture, to improve the application's scalability and maintainability.
+
+---
+Generated by AI Code Analyzer on 2025-04-09T11:00:07.555Z

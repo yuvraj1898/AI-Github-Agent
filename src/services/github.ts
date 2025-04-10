@@ -14,6 +14,14 @@ export interface GitHubUser {
   name: string;
 }
 
+export interface GitHubRepositoryFile {
+  name: string;
+  path: string;
+  type: 'file' | 'dir';
+  size?: number;
+  download_url?: string;
+}
+
 class GitHubService {
   private token: string | null = null;
   private clientId = "Ov23liJhNGTZSCc3nyi0"; // Updated with the provided Client ID
@@ -107,6 +115,24 @@ class GitHubService {
 
     if (!response.ok) {
       throw new Error('Failed to fetch repositories');
+    }
+
+    return response.json();
+  }
+
+  async fetchRepositoryFiles(owner: string, repo: string, path: string = ''): Promise<GitHubRepositoryFile[]> {
+    if (!this.token) {
+      throw new Error('Not authenticated');
+    }
+
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+      headers: {
+        Authorization: `Bearer ${this.token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch repository files');
     }
 
     return response.json();

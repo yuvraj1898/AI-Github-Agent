@@ -1,0 +1,353 @@
+# Code Repository Analysis Report
+============================
+
+## Repository Information
+- **URL**: https://github.com/yuvraj1898/AI-Github-Agent.git
+- **Analysis Date**: 2025-04-09T10:59:03.760Z
+
+## README Content
+```markdown
+# Welcome to your Lovable project
+
+## Project info
+
+**URL**: https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+
+## How can I edit this code?
+
+There are several ways of editing your application.
+
+**Use Lovable**
+
+Simply visit the [Lovable Project](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and start prompting.
+
+Changes made via Lovable will be committed automatically to this repo.
+
+**Use your preferred IDE**
+
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+```
+
+**Edit a file directly in GitHub**
+
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
+
+**Use GitHub Codespaces**
+
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes it is!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+```
+
+
+## Main Purpose
+This is a code analysis tool that provides comprehensive technical analysis and insights for code repositories.
+It can clone repositories, analyze their code, and generate detailed technical reports.
+
+## Core Features
+1. **Repository Analysis**
+   - Supports JavaScript/TypeScript and Python codebases
+   - Analyzes code structure, dependencies, and patterns
+   - Generates comprehensive technical reports
+
+2. **Code Parsing**
+   - Uses Babel parser for JavaScript/TypeScript
+   - Custom parsing for Python files
+   - AST-based analysis for accurate code understanding
+
+3. **AI-Powered Analysis**
+   - Uses Groq's AI model (llama-4-scout-17b)
+   - Generates intelligent insights and recommendations
+   - Provides architectural and design pattern analysis
+
+4. **File Management**
+   - Repository cloning and file operations
+   - File content analysis and parsing
+   - Dependency tracking and management
+
+5. **Summary Generation**
+   - Creates detailed technical reports
+   - Includes code metrics and analysis
+   - Provides AI-generated insights
+
+## Technical Stack
+1. **Backend**
+   - Node.js with Express
+   - RESTful API architecture
+   - Asynchronous processing
+
+2. **Frontend**
+   - React with TailwindCSS
+   - Modern UI/UX design
+   - Responsive interface
+
+3. **AI & Analysis**
+   - Groq API for code analysis
+   - Babel parser and traverse
+   - Custom code analysis algorithms
+
+4. **Database**
+   - Pinecone for embeddings
+   - Code search and retrieval
+   - Vector-based similarity search
+
+## Key Components
+1. **Services**
+   - RepoAnalyzerService: Main analysis orchestrator
+   - CodeAnalyzerService: Code parsing and analysis
+   - githubService: Repository operations
+
+2. **API Endpoints**
+   - /analyze: Repository analysis
+   - /list-files: File listing
+   - /summary/:filename: Summary retrieval
+   - /api/chat: Chat functionality
+
+## Analysis Capabilities
+1. **Code Structure Analysis**
+   - Total Files: 82
+   - Total Functions: 14
+   - Total Classes: 1
+
+2. **Code Metrics**
+   - Total Lines of Code: 14628
+   - Average Function Complexity: 2.27
+   - Maintainability Index: 51.40
+
+3. **Dependencies**
+   - https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+   - https://github.com/nvm-sh/nvm#installing-and-updating
+   - https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide
+   - axios
+   - cors
+   - express
+   - @eslint/js
+   - globals
+   - eslint-plugin-react-hooks
+   - eslint-plugin-react-refresh
+   - typescript-eslint
+   - https://cdn.gpteng.co/gptengineer.js
+   - /src/main.tsx
+   - @hookform/resolvers
+   - @radix-ui/react-accordion
+   - @radix-ui/react-alert-dialog
+   - @radix-ui/react-aspect-ratio
+   - @radix-ui/react-avatar
+   - @radix-ui/react-checkbox
+   - @radix-ui/react-collapsible
+   - @radix-ui/react-context-menu
+   - @radix-ui/react-dialog
+   - @radix-ui/react-dropdown-menu
+   - @radix-ui/react-hover-card
+   - @radix-ui/react-label
+   - @radix-ui/react-menubar
+   - @radix-ui/react-navigation-menu
+   - @radix-ui/react-popover
+   - @radix-ui/react-progress
+   - @radix-ui/react-radio-group
+   - @radix-ui/react-scroll-area
+   - @radix-ui/react-select
+   - @radix-ui/react-separator
+   - @radix-ui/react-slider
+   - @radix-ui/react-slot
+   - @radix-ui/react-switch
+   - @radix-ui/react-tabs
+   - @radix-ui/react-toast
+   - @radix-ui/react-toggle
+   - @radix-ui/react-toggle-group
+   - @radix-ui/react-tooltip
+   - @tanstack/react-query
+   - class-variance-authority
+   - clsx
+   - cmdk
+   - date-fns
+   - embla-carousel-react
+   - input-otp
+   - lucide-react
+   - next-themes
+   - react
+   - react-day-picker
+   - react-dom
+   - react-hook-form
+   - react-resizable-panels
+   - react-router-dom
+   - recharts
+   - sonner
+   - tailwind-merge
+   - tailwindcss-animate
+   - vaul
+   - zod
+   - @tailwindcss/typography
+   - @types/node
+   - @types/react
+   - @types/react-dom
+   - @vitejs/plugin-react-swc
+   - autoprefixer
+   - eslint
+   - lovable-tagger
+   - postcss
+   - tailwindcss
+   - typescript
+   - vite
+   - @/components/ui/toaster
+   - @/components/ui/sonner
+   - @/components/ui/tooltip
+   - ./pages/Index
+   - ./pages/NotFound
+   - ./pages/GitHubCallback
+   - ./contexts/GitHubContext
+   - @/components/ui/textarea
+   - @/components/ui/button
+   - @/components/ui/card
+   - @/hooks/use-toast
+   - @/components/ui/input
+   - @/contexts/GitHubContext
+   - @/components/ui/avatar
+   - @/components/ui/dropdown-menu
+   - @/components/ui/checkbox
+   - @/components/ui/scroll-area
+   - @/lib/utils
+   - @/components/ui/dialog
+   - @/components/ui/label
+   - @/hooks/use-mobile
+   - @/components/ui/separator
+   - @/components/ui/sheet
+   - @/components/ui/skeleton
+   - @/components/ui/toast
+   - @/components/ui/toggle
+   - @/services/github
+   - react-dom/client
+   - ./App.tsx
+   - ./index.css
+   - @/components/Header
+   - @/components/RepositoryList
+   - @/components/AIPrompt
+   - @/components/CodePreview
+   - path
+
+4. **Main Components**
+   - GitHubService (8 methods, complexity: undefined) in temp_repos/AI-Github-Agent/src/services/github.ts
+
+5. **Design Patterns**
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+   - Module Pattern (Multiple locations)
+
+6. **Code Issues**
+   - Nested If Statements (warning) at Multiple locations
+   - Nested If Statements (warning) at Multiple locations
+
+## AI-Generated Analysis
+### 1. Main Purpose
+The main purpose of this repository, AI-Github-Agent, is to provide a web-based interface for interacting with GitHub repositories using AI-powered features. It solves the problem of simplifying the process of editing, deploying, and managing GitHub repositories by integrating AI functionality.
+
+### 2. Core Features
+The core features of this project include:
+- **AI-Powered Code Editing**: Allows users to edit code using AI suggestions and prompts.
+- **Automated Deployment**: Enables users to deploy their projects directly from the interface.
+- **GitHub Repository Management**: Facilitates the management of GitHub repositories, including creating, editing, and deleting repositories.
+- **Custom Domain Connection**: Allows users to connect a custom domain to their projects.
+
+### 3. Key Components
+The key components handling the functionality include:
+- **GitHubService**: Handles interactions with the GitHub API, providing methods for repository management and deployment.
+- **AI-Prompt Component**: Provides the interface for users to interact with the AI for code editing suggestions.
+- **CodePreview Component**: Displays the preview of the code edits made by the user or suggested by the AI.
+
+### 4. Output
+The output of this application is a streamlined and AI-assisted workflow for managing and deploying GitHub repositories, making it easier for developers to work on their projects.
+
+### 5. User Interface
+The user interface is designed to be intuitive, with the following flow:
+1. **Login/Authentication**: Users log in to the application, potentially using GitHub authentication.
+2. **Repository Selection**: Users select the repository they wish to work on.
+3. **AI-Powered Editing**: Users interact with the AI to edit their code, receiving suggestions and prompts.
+4. **Deployment**: Users deploy their edited repository to a hosting platform.
+5. **Custom Domain Setup**: Optionally, users can connect a custom domain to their deployed project.
+
+```mermaid
+graph LR
+    A[Login] --> B[Select Repository]
+    B --> C[AI-Powered Editing]
+    C --> D[Deploy Project]
+    D --> E[Custom Domain Setup]
+```
+
+### 6. Technical Stack
+The technical stack includes:
+- **Frontend**: Built with React, using libraries like `@radix-ui/react-*` for UI components, and `react-hook-form` for form management.
+- **Backend**: Utilizes Node.js with Express for server-side logic, and GitHub API for repository interactions.
+- **AI Integration**: Leverages AI models for code suggestions, potentially using services like GitHub Copilot or similar AI coding assistants.
+- **Deployment**: Employs Vite for development and potentially a CDN for hosting.
+
+### 7. Code Quality
+The code quality appears to be good, with a maintainability index of 51.40 and an average function complexity of 2.27. However, there are areas for improvement, such as addressing nested if statements and potentially reducing the number of dependencies.
+
+### 8. Design Patterns
+The codebase utilizes the Module Pattern extensively, which is beneficial for organizing and encapsulating functionality. To improve, other patterns such as the Singleton Pattern for managing global state or the Observer Pattern for handling events could be considered.
+
+### 9. Code Issues
+- **Nested If Statements**: Refactor code to reduce nesting, improving readability and maintainability. Consider using guard clauses or early returns.
+- **Warning Handling**: Ensure all warnings are addressed, potentially by adding type annotations or fixing deprecated function usage.
+
+### 10. Strengths
+- **Innovative Use of AI**: The integration of AI for code editing and suggestions is a significant strength, offering a unique value proposition.
+- **Streamlined Deployment**: The ability to deploy projects directly from the interface simplifies the development workflow.
+
+### 11. Improvement Opportunities
+- **Scalability**: Consider optimizations for large repositories or high traffic, potentially leveraging caching or more efficient algorithms.
+- **Security**: Ensure all interactions with the GitHub API and user data are secure, following best practices for authentication and authorization.
+
+### 12. Recommendations
+- **Implement Continuous Integration/Continuous Deployment (CI/CD)**: Automate testing and deployment to ensure the application is always stable and up-to-date.
+- **Enhance AI Model Integration**: Consider allowing users to select from different AI models or fine-tune models for specific use cases, enhancing the AI-powered editing experience.
+- **Expand User Documentation**: Provide comprehensive guides and tutorials for users to get the most out of the application, including troubleshooting and FAQ sections.
+
+---
+Generated by AI Code Analyzer on 2025-04-09T10:59:03.761Z

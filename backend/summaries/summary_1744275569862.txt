@@ -1,0 +1,306 @@
+# Code Repository Analysis Report
+============================
+
+## Repository Information
+- **URL**: https://github.com/yuvraj1898/AISummarizer.git
+- **Analysis Date**: 2025-04-10T08:59:29.862Z
+
+## README Content
+```markdown
+# 📄 AI-Powered Summarizer (PDF, YouTube & Web URLs)
+### App Link:https://aisummarizer-mznte74r5wosv7oawkktfk.streamlit.app/
+This is a **Streamlit-based AI-powered summarizer** that can extract and summarize content from:
+- **PDF files**
+- **YouTube videos (Transcripts)**
+- **Web pages (Static content scraping)**
+
+The app allows users to:
+✅ **Choose an LLM model dynamically from Groq API**  
+✅ **Customize summary style (Concise, Detailed, Technical, Creative)**  
+✅ **Adjust model creativity using a temperature slider**  
+✅ **Rephrase summaries if not satisfied**  
+✅ **Download summaries as `.txt` files**  
+
+---
+
+## 🚀 Features
+- **📂 PDF Upload & Summarization**  
+- **🎥 YouTube Transcript Summarization**  
+- **🌍 Website Content Summarization**  
+- **📜 Multiple Summary Styles**  
+- **🛠️ Customizable Model Selection (Groq API)**  
+- **♻️ Rephrase Summary Button**  
+- **📥 Download Summary as `.txt`**
+
+---
+
+## 🛠️ Installation
+
+### **1️⃣ Clone the Repository**
+```bash
+git clone https://github.com/yuvraj1898/AISummarizer.git
+cd AI-Document-Summarizer
+```
+```bash
+python -m venv venv
+```
+```bash
+source venv/bin/activate  # On macOS/Linux
+venv\Scripts\activate     # On Windows
+```
+```bash
+pip install -r requirements.txt
+```
+## 🔑 API Key Setup
+- **This project uses Groq API for model inference.**
+- **Create a .env file in the project root and add:**
+```bash
+GROQ_API_KEY=your_api_key_here
+Or enter the API key directly in the Streamlit sidebar.
+```
+## ▶️ Run the App
+```bash
+streamlit run app.py
+Note: If the file is named differently, replace app.py with the correct filename.
+```
+## 📌 Usage
+### 1️⃣ Select an LLM Model
+Enter your Groq API key in the sidebar.
+
+Select an LLM model from the dropdown.
+
+### 2️⃣ Upload a PDF / Enter a YouTube or Web URL
+For PDFs: Upload a file via the UI.
+
+For YouTube: Paste a video URL (fetches transcript).
+
+For Websites: Paste a webpage URL (extracts text content).
+
+### 3️⃣ Customize Summary Preferences
+Choose a summary style:
+
+Concise
+
+Detailed
+
+Technical
+
+Creative
+
+Adjust temperature for creativity.
+
+### 4️⃣ Generate & Rephrase Summary
+Click Summarize to generate output.
+
+Click ♻️ Rephrase Summary if not satisfied.
+
+Download the summary using 📥 Download Summary as .txt.
+
+
+
+```
+
+
+## Main Purpose
+This is a code analysis tool that provides comprehensive technical analysis and insights for code repositories.
+It can clone repositories, analyze their code, and generate detailed technical reports.
+
+## Core Features
+1. **Repository Analysis**
+   - Supports JavaScript/TypeScript and Python codebases
+   - Analyzes code structure, dependencies, and patterns
+   - Generates comprehensive technical reports
+
+2. **Code Parsing**
+   - Uses Babel parser for JavaScript/TypeScript
+   - Custom parsing for Python files
+   - AST-based analysis for accurate code understanding
+
+3. **AI-Powered Analysis**
+   - Uses Groq's AI model (llama-4-scout-17b)
+   - Generates intelligent insights and recommendations
+   - Provides architectural and design pattern analysis
+
+4. **File Management**
+   - Repository cloning and file operations
+   - File content analysis and parsing
+   - Dependency tracking and management
+
+5. **Summary Generation**
+   - Creates detailed technical reports
+   - Includes code metrics and analysis
+   - Provides AI-generated insights
+
+## Technical Stack
+1. **Backend**
+   - Node.js with Express
+   - RESTful API architecture
+   - Asynchronous processing
+
+2. **Frontend**
+   - React with TailwindCSS
+   - Modern UI/UX design
+   - Responsive interface
+
+3. **AI & Analysis**
+   - Groq API for code analysis
+   - Babel parser and traverse
+   - Custom code analysis algorithms
+
+4. **Database**
+   - Pinecone for embeddings
+   - Code search and retrieval
+   - Vector-based similarity search
+
+## Key Components
+1. **Services**
+   - RepoAnalyzerService: Main analysis orchestrator
+   - CodeAnalyzerService: Code parsing and analysis
+   - githubService: Repository operations
+
+2. **API Endpoints**
+   - /analyze: Repository analysis
+   - /list-files: File listing
+   - /summary/:filename: Summary retrieval
+   - /api/chat: Chat functionality
+
+## Analysis Capabilities
+1. **Code Structure Analysis**
+   - Total Files: 4
+   - Total Functions: 6
+   - Total Classes: 0
+
+2. **Code Metrics**
+   - Total Lines of Code: 383
+   - Average Function Complexity: 8.50
+   - Maintainability Index: 0.00
+
+3. **Dependencies**
+   - os
+   - streamlit as st
+   - requests
+   - dotenv
+   - urllib.parse
+   - PyPDF2
+   - tiktoken  # Token counting
+   - langchain_community.document_loaders
+   - langchain_groq
+   - langchain_core.prompts
+   - langchain_text_splitters
+   - langchain.chains.summarize
+   - youtube_transcript_api
+   - langchain_core.documents
+   - validators
+   - bs4
+
+4. **Main Components**
+
+
+5. **Design Patterns**
+   - No specific design patterns detected
+
+6. **Code Issues**
+   - No significant issues detected
+
+## AI-Generated Analysis
+### 1. Main Purpose
+The main purpose of this repository is to provide an AI-powered summarizer that can extract and summarize content from various sources such as PDF files, YouTube videos, and web pages. The problem it solves is to provide a concise and meaningful summary of large amounts of content, saving users time and effort.
+
+### 2. Core Features
+The main features of this repository are:
+- **PDF Upload & Summarization**: The ability to upload PDF files and generate summaries.
+- **YouTube Transcript Summarization**: The ability to fetch transcripts from YouTube videos and generate summaries.
+- **Website Content Summarization**: The ability to extract text content from web pages and generate summaries.
+- **Customizable Model Selection**: The ability to select from multiple LLM models using the Groq API.
+- **Adjustable Summary Style**: The ability to choose from different summary styles (Concise, Detailed, Technical, Creative).
+- **Temperature Slider**: The ability to adjust the model's creativity using a temperature slider.
+- **Rephrase Summary Button**: The ability to rephrase the summary if not satisfied.
+- **Download Summary as `.txt`**: The ability to download the summary as a text file.
+
+### 3. Key Components
+The key components of this repository are:
+- **Streamlit App**: A web application built using Streamlit that provides the user interface and handles user input.
+- **Groq API**: A language model API that provides the LLM models used for summarization.
+- **PDF Upload Handler**: A component that handles PDF file uploads and extracts text content.
+- **YouTube Transcript API**: A component that fetches transcripts from YouTube videos.
+- **Web Scraping Component**: A component that extracts text content from web pages.
+- **LLM Model Selector**: A component that allows users to select from multiple LLM models.
+
+### 4. Output
+The output of this repository is a concise and meaningful summary of the input content, which can be downloaded as a text file.
+
+### 5. User Interface
+The user interface is a web application built using Streamlit. The flow of the application is as follows:
+1. User enters the Groq API key.
+2. User selects an LLM model from the dropdown.
+3. User uploads a PDF file or enters a YouTube or web URL.
+4. User customizes the summary preferences (summary style, temperature).
+5. User clicks the "Summarize" button to generate the summary.
+6. User can rephrase the summary if not satisfied.
+7. User can download the summary as a text file.
+
+Here is a simple diagram illustrating the flow:
+```mermaid
+graph LR
+    A[User Input] --> B[LLM Model Selection]
+    B --> C[Content Upload/URL Entry]
+    C --> D[Summary Preferences]
+    D --> E[Summarize Button]
+    E --> F[Summary Output]
+    F --> G[Rephrase Button]
+    G --> F
+    F --> H[Download Summary]
+```
+
+### 6. Technical Stack
+The technical stack used in this repository includes:
+- **Streamlit**: A Python library for building web applications.
+- **Groq API**: A language model API for LLM models.
+- **Python**: The programming language used for the application.
+- **PyPDF2**: A library for reading and extracting text from PDF files.
+- **youtube_transcript_api**: A library for fetching transcripts from YouTube videos.
+- **langchain**: A library for working with language models.
+- **requests**: A library for making HTTP requests.
+- **dotenv**: A library for loading environment variables from a file.
+
+### 7. Code Quality
+The code quality is assessed based on the provided metrics:
+- **Complexity**: The average function complexity is 8.50, which is relatively high. This suggests that some functions may be too complex and could be broken down into smaller, more manageable functions.
+- **Maintainability**: The average maintainability index is 0.00, which is very low. This suggests that the code may be difficult to maintain and modify.
+- **Total Lines of Code**: The total lines of code is 383, which is relatively small.
+
+### 8. Design Patterns
+The design patterns used in this repository are not explicitly stated. However, some possible design patterns that could be applied are:
+- **Model-View-Controller (MVC)**: This pattern could be used to separate the application logic into three interconnected components.
+- **Singleton**: This pattern could be used to ensure that only one instance of a class is created.
+
+### 9. Code Issues
+The identified issues are:
+- **High function complexity**: Some functions are too complex and could be broken down into smaller functions.
+- **Low maintainability**: The code may be difficult to maintain and modify.
+- **Lack of design patterns**: The code does not explicitly use design patterns, which could make it harder to understand and modify.
+
+### 10. Strengths
+The notable strengths of this codebase are:
+- **Clear and concise code**: The code is well-organized and easy to read.
+- **Use of libraries**: The code uses a variety of libraries to simplify tasks and improve performance.
+- **Streamlit application**: The use of Streamlit provides a simple and intuitive user interface.
+
+### 11. Improvement Opportunities
+The areas that could be improved are:
+- **Scalability**: The code may not be scalable to handle large amounts of data or user traffic.
+- **Maintainability**: The code could be refactored to improve maintainability and reduce complexity.
+- **Error handling**: The code could be improved to handle errors and exceptions more robustly.
+- **Security**: The code could be improved to ensure the security of user data and API keys.
+
+### 12. Recommendations
+The specific, actionable recommendations for enhancing the codebase are:
+- **Refactor complex functions**: Break down complex functions into smaller, more manageable functions.
+- **Apply design patterns**: Use design patterns such as MVC or Singleton to improve code organization and maintainability.
+- **Improve error handling**: Add try-except blocks to handle errors and exceptions more robustly.
+- **Use a more secure method for storing API keys**: Use a secure method such as environment variables or a secrets manager to store API keys.
+- **Add unit tests**: Add unit tests to ensure the code is working correctly and catch any regressions.
+- **Consider using a more scalable framework**: Consider using a more scalable framework such as Flask or Django to handle large amounts of user traffic.
+
+---
+Generated by AI Code Analyzer on 2025-04-10T08:59:29.862Z

@@ -6,6 +6,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useGitHub } from '@/contexts/GitHubContext';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
+import { GitHubRepository } from '@/services/github';
 
 const languageColors: Record<string, string> = {
   TypeScript: 'bg-blue-600',
@@ -29,9 +31,10 @@ interface RepositoryListProps {
 }
 
 const RepositoryList: React.FC<RepositoryListProps> = ({ onSelectionChange }) => {
-  const { repositories, loading, fetchRepositories, isAuthenticated } = useGitHub();
+  const { repositories, loading, fetchRepositories, isAuthenticated, user } = useGitHub();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRepositories, setSelectedRepositories] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -46,6 +49,12 @@ const RepositoryList: React.FC<RepositoryListProps> = ({ onSelectionChange }) =>
       onSelectionChange(newSelection);
       return newSelection;
     });
+  };
+
+  const handleRepositoryClick = (repo: GitHubRepository) => {
+    if (user) {
+      navigate(`/repository/${user.login}/${repo.name}`);
+    }
   };
 
   const filteredRepositories = repositories.filter(repo =>
@@ -111,6 +120,7 @@ const RepositoryList: React.FC<RepositoryListProps> = ({ onSelectionChange }) =>
               <Card 
                 key={repo.id} 
                 className={`repository-card ${selectedRepositories.includes(repo.id) ? 'selected' : ''}`}
+                onClick={() => handleRepositoryClick(repo)}
               >
                 <CardContent className="p-4">
                   <div className="flex items-start justify-between">

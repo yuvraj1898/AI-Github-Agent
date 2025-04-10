@@ -1,73 +1,117 @@
-# Welcome to your Lovable project
+# AI Code Analyzer
 
-## Project info
+An advanced code analysis tool that uses AI to analyze and understand codebases. The tool provides comprehensive insights into code structure, complexity, patterns, and potential issues.
 
-**URL**: https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32
+## Features
 
-## How can I edit this code?
+- **Code Analysis**
+  - Language-specific analysis (JavaScript/TypeScript support)
+  - Cyclomatic complexity calculation
+  - Design pattern detection
+  - Security vulnerability scanning
+  - Dependency analysis
 
-There are several ways of editing your application.
+- **AI-Powered Insights**
+  - Code embeddings for semantic search
+  - AI-generated code summaries
+  - Pattern recognition
+  - Recommendations for improvement
 
-**Use Lovable**
+- **Vector Storage**
+  - Efficient storage of code embeddings
+  - Similar code search
+  - Metadata management
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and start prompting.
+## Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (v14 or higher)
+- OpenAI API key
+- Pinecone API key
+- GitHub credentials (optional)
 
-**Use your preferred IDE**
+## Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/ai-code-analyzer.git
+   cd ai-code-analyzer
+   ```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Follow these steps:
+3. Configure environment variables:
+   - Copy `.env.example` to `.env`
+   - Fill in your API keys and credentials
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Usage
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Start the server:
+   ```bash
+   npm start
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Send a POST request to analyze a repository:
+   ```bash
+   curl -X POST http://localhost:3000/analyze \
+     -H "Content-Type: application/json" \
+     -d '{"repoUrl": "https://github.com/username/repo.git"}'
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## API Endpoints
+
+### POST /analyze
+Analyzes a GitHub repository and returns comprehensive insights.
+
+**Request Body:**
+```json
+{
+  "repoUrl": "https://github.com/username/repo.git"
+}
 ```
 
-**Edit a file directly in GitHub**
+**Response:**
+```json
+{
+  "analysis": {
+    "files": [...],
+    "metrics": {
+      "totalFiles": 10,
+      "languageDistribution": {...},
+      "complexity": {...}
+    }
+  },
+  "summary": "..."
+}
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── analyzers/          # Language-specific analyzers
+├── services/           # Core services
+├── utils/             # Utility functions
+├── config/            # Configuration
+└── server.js          # Main server file
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Contributing
 
-## What technologies are used for this project?
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## How can I deploy this project?
+## Acknowledgments
 
-Simply open [Lovable](https://lovable.dev/projects/b56f7bfc-6e68-4346-8393-948c48a2ec32) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- OpenAI for providing the GPT and embedding models
+- Pinecone for vector storage
+- Babel for JavaScript parsing
