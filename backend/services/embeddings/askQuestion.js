@@ -4,9 +4,9 @@ const { Pinecone } = require('@pinecone-database/pinecone');
 
 require('dotenv').config();
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "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";
-const PINECONE_API_KEY = process.env.PINECONE_API_KEY || "pcsk_2pkc92_LRqfKySub3RCLPeAuWRL2FfmK7jRTHVaKqzunuM8kmAZFMmmJj9nBtFCJ47Tffy";
-const PINECONE_INDEX_NAME = process.env.PINECONE_INDEX_NAME || 'code-embeddings';
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY ;
+const PINECONE_API_KEY = process.env.PINECONE_API_KEY ;
+const PINECONE_INDEX_NAME = 'code-embeddings';
 
 console.log("🔑 OPENAI_API_KEY loaded:", OPENAI_API_KEY ? "✅ Yes" : "❌ No");
 console.log("🌲 PINECONE config:", PINECONE_INDEX_NAME ? "✅ Yes" : "❌ No");

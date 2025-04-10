@@ -9,7 +9,7 @@ const Openai=require('openai');
 class RepoAnalyzerService {
     constructor() {
         this.groq = new Groq({
-            apiKey:"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",
+            apiKey:process.env.GROQ_API_KEY,
         });
         this.openai=new Openai({
             apiKey:process.env.OPENAI_API_KEY,
