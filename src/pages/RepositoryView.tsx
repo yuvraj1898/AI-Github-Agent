@@ -8,29 +8,49 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, FileText, MessageSquare } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import axios from 'axios';
+ // Polyfill for browser
+ // Node.js library for hashing (if in Node.js)
+
 const RepositoryView: React.FC = () => {
   const { owner, repo } = useParams<{ owner: string; repo: string }>();
   const navigate = useNavigate();
   const { user } = useGitHub();
   const [activeTab, setActiveTab] = useState('files');
+  const [repoId, setRepoId] = useState<string | null>(null); // State for repoId
+  const [isEmbedding, setIsEmbedding] = useState(false);
 
- 
-  const [isEmbedding, setIsEmbedding] = useState(true);
+  useEffect(() => {
+    // Dynamically generate repoId based on owner and repo
+    const generateRepoId = (owner: string, repo: string) => {
+      const repoString = `${owner}-${repo}`;
+      
+      return repoString; // You can use the hash as the repoId
+    };
 
-  // useEffect(() => {
-  //   const embedRepo = async () => {
-  //     try {
-  //       const repoUrl = `https://github.com/${owner}/${repo}`;
-  //       await axios.post('http://localhost:3000/process-repo', { repoUrl });
-  //     } catch (error) {
-  //       console.error('❌ Error embedding:', error);
-  //     } finally {
-  //       setIsEmbedding(false);
-  //     }
-  //   };
+    if (owner && repo) {
+      const generatedRepoId = generateRepoId(owner, repo);
+      setRepoId(generatedRepoId); // Set the repoId state dynamically
+    }
+  }, [owner, repo]);
+
+
+    const embedRepo = async () => {
+      setIsEmbedding(true)
+      if (!repoId) return; // Wait until repoId is available
+
+      try {
+        const repoUrl = `https://github.com/${owner}/${repo}`;
+        await axios.post('http://localhost:3000/process-repo', { repoUrl, repoId });
+
+      } catch (error) {
+        console.error('❌ Error embedding:', error);
+      } finally {
+        setIsEmbedding(false);
+      }
+    };
+
   
-  //   embedRepo();
-  // }, [owner, repo]);
+  
 
   if (!owner || !repo) {
     return <div>Repository not found</div>;
@@ -46,6 +66,9 @@ const RepositoryView: React.FC = () => {
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
+        </Button>
+        <Button onClick={embedRepo} >
+          embed
         </Button>
         <h1 className="text-2xl font-bold">
           {owner}/{repo}
@@ -68,21 +91,15 @@ const RepositoryView: React.FC = () => {
                 Chat
               </TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="files" className="h-[calc(100vh-12rem)]">
               <div className="grid grid-rows-2 gap-6 h-full">
-                {/* Content area for file preview or other repository information */}
-                {/* <div className="border rounded-lg p-4 min-h-[calc(50vh-8rem)]">
-                  <p className="text-muted-foreground">Select a file to view its contents</p>
-                </div> */}
-                
-                {/* Codebase Analysis */}
-                <div >
+                <div>
                   <CodebaseAnalyzer owner={owner} repo={repo} />
                 </div>
               </div>
             </TabsContent>
-            
+
             <TabsContent value="chat" className="h-[calc(100vh-12rem)]">
               <CodeModificationChat />
             </TabsContent>
@@ -93,4 +110,4 @@ const RepositoryView: React.FC = () => {
   );
 };
 
-export default RepositoryView; 
+export default RepositoryView;

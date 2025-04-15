@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, Code, RefreshCw } from 'lucide-react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import axios from 'axios';
 
@@ -23,60 +24,63 @@ interface CodeDiff {
 const CodeModificationChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const { owner, repo } = useParams<{ owner: string; repo: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const [codeDiffs, setCodeDiffs] = useState<CodeDiff[]>([]);
   const [activeTab, setActiveTab] = useState('chat');
-
+  const [repoId, setRepoId] = useState<string | null>(null); 
 
   // Load history when component mounts
   useEffect(() => {
-    fetchChatHistory();
+    // Dynamically generate repoId based on owner and repo
+    const generateRepoId = (owner: string, repo: string) => {
+      const repoString = `${owner}-${repo}`;
+      return repoString; // You can use the repoString or hash it for uniqueness
+    };
+
+    if (owner && repo) {
+      const generatedRepoId = generateRepoId(owner, repo);
+      setRepoId(generatedRepoId); // Set the repoId state dynamically
+    }
+  }, [owner, repo]);
+  
+  useEffect(() => {
+    if (repoId) {
+      fetchChatHistory();
+    }
   }, []);
   
   const fetchChatHistory = async () => {
-    try {
-      const response = await axios.get('http://localhost:3000/api/chat/history');
-      if (response.data && Array.isArray(response.data.messages)) {
-        // Convert string timestamps back to Date objects
-        const formattedMessages = response.data.messages.map((msg: any) => ({
-          ...msg,
-          timestamp: new Date(msg.timestamp)
-        }));
-        setMessages(formattedMessages);
-      }
-      
-      if (response.data && Array.isArray(response.data.codeDiffs)) {
-        setCodeDiffs(response.data.codeDiffs);
-      }
-    } catch (error) {
-      console.error('Failed to fetch chat history:', error);
+    const savedHistory = localStorage.getItem(repoId || '');
+    if (savedHistory) {
+      const parsedHistory = JSON.parse(savedHistory);
+      setMessages(parsedHistory.messages);
+      setCodeDiffs(parsedHistory.codeDiffs || []);
     }
   };
-
+  
   const handleSendMessage = async () => {
-    if (!input.trim()) return;
-
-    // Add user message
+    if (!input.trim() || !repoId) return;
+  
     const userMessage: Message = {
       id: Date.now().toString(),
       content: input,
       sender: 'user',
       timestamp: new Date(),
     };
-
-    setMessages((prev) => [...prev, userMessage]);
+  
+    const newMessages = [...messages, userMessage];
+    setMessages(newMessages);
     setInput('');
     setIsLoading(true);
-
-    // Simulate AI response
+  
     try {
-      // Send message to backend
       const response = await axios.post('http://localhost:3000/api/chat/ask', {
         question: input,
-        messageHistory: messages
+        messageHistory: newMessages,
+        repoId,
       });
-
-      // Process AI response
+  
       if (response.data) {
         const aiMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -84,30 +88,35 @@ const CodeModificationChat: React.FC = () => {
           sender: 'ai',
           timestamp: new Date(),
         };
-
-        setMessages(prev => [...prev, aiMessage]);
-        
-        // Check if there are code diffs to add
-        if (response.data.codeDiff) {
-          setCodeDiffs(prev => [...prev, response.data.codeDiff]);
+        setMessages((prev) => [...prev, aiMessage]);
+  
+        if (response.data.codeDiffs && Array.isArray(response.data.codeDiffs)) {
+          setCodeDiffs(response.data.codeDiffs);
         }
+  
+        // Save the new history to localStorage
+        const updatedHistory = {
+          messages: [...newMessages, aiMessage],
+          codeDiffs: response.data.codeDiffs,
+        };
+        localStorage.setItem(repoId, JSON.stringify(updatedHistory));
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      
-      // Add error message
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: "Sorry, there was an error processing your request.",
-        sender: 'ai',
-        timestamp: new Date(),
-      };
-      
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + 1).toString(),
+          content: "Sorry, there was an error processing your request.",
+          sender: 'ai',
+          timestamp: new Date(),
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
+  
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -242,4 +251,4 @@ const CodeModificationChat: React.FC = () => {
   );
 };
 
-export default CodeModificationChat; 
+export default CodeModificationChat;

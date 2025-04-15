@@ -1,21 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const simpleGit = require('simple-git');
 const { OpenAI } = require('openai');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const compression = require('compression');
-require('dotenv').config();
 const repoAnalyzerService = require('./services/repoAnalyzerService');
-const { processRepo } = require('./services/embeddings/generateEmbeddings');
-const { askQuestion } = require('./services/embeddings/askQuestion');
+const { embedAndStoreChunks } = require('./services/vectorizer/embedAndStoreChunks');
+const { answerQuestion } = require('./services/answerQuestions');
 
-const chatHistory = {
-    messages: [],
-    codeDiffs: []
-  };
+
 const app = express();
 
 // Enable compression
@@ -79,9 +76,7 @@ app.post('/analyze', async (req, res) => {
         // Return both the analysis and the path to the summary file
         res.json({
             success: true,
-            // ...analysis,
-            // summaryFile: path.relative(process.cwd(), analysis.summaryFile)
-            summary: analysis, // ensure it's sent
+            summary: analysis,
             summaryFile: path.relative(process.cwd(), analysis.summaryFile)
         });
     } catch (error) {
@@ -93,23 +88,37 @@ app.post('/analyze', async (req, res) => {
         });
     }
 });
+
 // New endpoint to process repository
 app.post('/process-repo', async (req, res) => {
-    const { repoUrl } = req.body;
-  
-    if (!repoUrl) {
-      return res.status(400).json({ error: 'Missing repoUrl in request body' });
+    const { repoUrl, repoId } = req.body;
+
+    if (!repoUrl || !repoId) {
+        return res.status(400).json({ error: 'repoUrl and repoId are required' });
     }
-  
+
+    const repoName = repoUrl.split('/').pop()?.replace(/\.git$/, '') || `repo-${Date.now()}`;
+    const repoPath = path.join(__dirname, 'cloned_repos', repoName);
+
     try {
-      console.log(`🔧 Processing repo: ${repoUrl}`);
-      const result = await processRepo(repoUrl);
-      res.json({ success: true, message: 'Repo processed and embedded!', ...result });
-    } catch (error) {
-      console.error('❌ Error:', error.message);
-      res.status(500).json({ success: false, error: error.message });
+        // Clean up existing clone (if any)
+        await fs.remove(repoPath);
+
+        // Clone repo using simple-git
+        const git = simpleGit();
+        console.log(`📥 Cloning ${repoUrl} into ${repoPath}...`);
+        await git.clone(repoUrl, repoPath);
+
+        // Embed and store vectors
+        console.log('🔍 Embedding and storing code chunks...');
+        await embedAndStoreChunks(repoPath, repoId);
+
+        res.json({ success: true, message: '✅ Repo processed and vectors stored' });
+    } catch (err) {
+        console.error('❌ Error:', err.message);
+        res.status(500).json({ error: 'Failed to process repo' });
     }
-  });
+});
 
 app.post('/auth/github/callback', async (req, res) => {
     const { code } = req.body;
@@ -142,87 +151,57 @@ app.post('/auth/github/callback', async (req, res) => {
         res.status(500).json({ success: false, error: 'Authentication failed' });
     }
 });
+const chatHistory = {};
 app.get('/api/chat/history', (req, res) => {
-    res.json(chatHistory);
-  });
-  
-  // Process a question and return AI response
-  app.post('/api/chat/ask', async (req, res) => {
-    try {
-      const { question, messageHistory } = req.body;
-      
-      if (!question) {
-        return res.status(400).json({ error: 'Question is required' });
-      }
-  
-      console.log('Processing question:', question);
-      console.log('Message history length:', messageHistory?.length || 0);
-  
-      // Save incoming message history if provided
-      if (messageHistory && Array.isArray(messageHistory)) {
-        chatHistory.messages = messageHistory;
-      }
-      
-      // Ask the question to your AI
-      console.log('Calling askQuestion function...');
-      const answer = await askQuestion(question);
-      
-      if (!answer) {
-        return res.status(500).json({ error: 'No answer returned from AI service' });
-      }
-      
-      console.log('Answer received, processing response...');
-      
-      // Extract code diffs if present in the answer
-      let codeDiff = null;
-      const codeBlockMatch = answer.match(/```[\s\S]*?```/g);
-      
-      if (codeBlockMatch) {
-        console.log('Code blocks found in response:', codeBlockMatch.length);
-        
-        // Simple parsing logic - enhance as needed
-        const beforeCode = codeBlockMatch[0]?.replace(/```[\w]*\n/, '').replace(/```$/, '') || '';
-        const afterCode = codeBlockMatch[1]?.replace(/```[\w]*\n/, '').replace(/```$/, '') || '';
-        
-        codeDiff = {
-          before: beforeCode || '',
-          after: afterCode || '',
-          filePath: extractFilePath(answer) || 'unknown.js',
-        };
-        
-        // Add to history
-        chatHistory.codeDiffs.push(codeDiff);
-      }
-      
-      // Update chat history with AI response
-      const aiMessage = {
-        id: Date.now().toString(),
-        content: answer,
-        sender: 'ai',
-        timestamp: new Date()
-      };
-      
-      chatHistory.messages.push(aiMessage);
-      
-      console.log('Sending successful response');
-      res.json({
-        answer,
-        codeDiff
-      });
-    } catch (error) {
-      console.error('Error processing question:', error);
-      res.status(500).json({ 
-        error: 'Failed to process your question', 
-        details: error.message 
-      });
+  const { repoId } = req.query;
+  if (!repoId) return res.status(400).json({ error: 'repoId required' });
+
+  // Get history from in-memory store
+  const history = chatHistoryStore[repoId] || { messages: [], codeDiffs: [] };
+  res.json(history);
+});
+
+// Process a question and return AI response
+app.post('/api/chat/ask', async (req, res) => {
+  try {
+    const { question, repoId } = req.body;
+    if (!repoId) return res.status(400).json({ error: 'repoId is required' });
+
+    // Initialize memory for repoId if not exists
+    if (!chatHistory[repoId]) {
+      chatHistory[repoId] = { messages: [], codeDiffs: [] };
     }
-  });
-  
-  // Helper function to extract file path from AI response
-  function extractFilePath(text) {
-    const filePathMatch = text.match(/File:\s*([^\n]+)/);
-    return filePathMatch ? filePathMatch[1].trim() : null;
+
+    // Use history in the prompt if needed
+    const history = chatHistory[repoId].messages;
+
+    const answer = await answerQuestion(question, repoId, history); // pass history to OpenAI
+
+    const aiMessage = {
+      id: Date.now().toString(),
+      content: answer?.text || answer || "I couldn't process your request.",
+      sender: 'ai',
+      timestamp: new Date()
+    };
+
+    chatHistory[repoId].messages.push({ sender: 'user', content: question, timestamp: new Date() });
+    chatHistory[repoId].messages.push(aiMessage);
+
+    if (answer?.codeDiffs && Array.isArray(answer.codeDiffs)) {
+      chatHistory[repoId].codeDiffs = answer.codeDiffs;
+    }
+
+    res.json({
+      answer: aiMessage.content,
+      codeDiffs: answer.codeDiffs || []
+    });
+  } catch (error) {
+    console.error('Error processing question:', error);
+    res.status(500).json({ error: 'Failed to process your question', details: error.message });
   }
+});
+
+// Helper function to extract file path from AI response
 
 const PORT = 3000;
 app.listen(PORT, () => {
