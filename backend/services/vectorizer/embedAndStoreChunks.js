@@ -1,63 +1,125 @@
-
-const { OpenAI } = require('openai');
 const { Pinecone } = require('@pinecone-database/pinecone');
 const { v4: uuidv4 } = require('uuid');
 const { walkAndChunkDirectory } = require('../chunkers/chunkerRouter');
+const { spawn } = require('child_process');
+require('dotenv').config();
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const pinecone = new Pinecone();
-const index = pinecone.index(process.env.PINECONE_INDEX_NAME);
-
-const EMBEDDING_MODEL = 'text-embedding-3-small';
+const index = pinecone.index(process.env.PINECONE_INDEX_NAME_CodeBert);
+const path = require('path');
 
 /**
- * Embed and store code chunks in Pinecone.
+ * Embed and store code chunks in Pinecone using Python CodeBERT.
  * 
  * @param {string} repoPath - The path to the repository.
  * @param {string} repoId - The unique identifier for the repository.
  */
 async function embedAndStoreChunks(repoPath, repoId) {
   const chunks = await walkAndChunkDirectory(repoPath);
-  const vectors = [];
 
-  for (const chunk of chunks) {
-    try {
-      const response = await openai.embeddings.create({
-        model: EMBEDDING_MODEL,
-        input: chunk.code,
-      });
+  return new Promise((resolve, reject) => {
+    const pyScriptPath = path.resolve(__dirname, 'codebert_embed.py');
+    const python = require('child_process').spawn('python3', [pyScriptPath]);
 
-      const vector = {
-        id: uuidv4(),
-        values: response.data[0].embedding,
-        metadata: {
-          repoId, // 🔑 Added to distinguish which repo this chunk belongs to
-          filePath: chunk.filePath,
-          name: chunk.name,
-          type: chunk.type,
-          language: chunk.language,
-          code: chunk.code,
-          calls: chunk.calls,
-          imports: chunk.imports,
-        },
-      };
+    let result = '';
+    let error = '';
 
-      vectors.push(vector);
-    } catch (err) {
-      console.error(`Error embedding chunk from ${chunk.filePath}:`, err);
-    }
-  }
+    python.stdout.on('data', (data) => {
+      result += data.toString();
+    });
 
-  const BATCH_SIZE = 100;
-  for (let i = 0; i < vectors.length; i += BATCH_SIZE) {
-    const batch = vectors.slice(i, i + BATCH_SIZE);
-    try {
-      await index.upsert(batch);
-      console.log(`✅ Upserted ${batch.length} vectors`);
-    } catch (err) {
-      console.error(`❌ Failed to upsert batch:`, err);
-    }
-  }
+    python.stderr.on('data', (data) => {
+      error += data.toString();
+    });
+
+    python.on('close', async (code) => {
+      if (code !== 0 || error) {
+        return reject(`Python error: ${error}`);
+      }
+
+      let enrichedChunks = JSON.parse(result);
+      const vectors = [];
+
+      for (const chunk of enrichedChunks) {
+        if (chunk.embedding) {
+          vectors.push({
+            id: uuidv4(),
+            values: chunk.embedding,
+            metadata: {
+              repoId,
+              filePath: chunk.filePath,
+              name: chunk.name,
+              type: chunk.type,
+              language: chunk.language,
+              code: chunk.code,
+              calls: chunk.calls,
+              imports: chunk.imports,
+            },
+          });
+        } else {
+          console.error(`Skipping chunk due to embedding error: ${chunk.error}`);
+        }
+      }
+
+      const BATCH_SIZE = 100;
+      for (let i = 0; i < vectors.length; i += BATCH_SIZE) {
+        const batch = vectors.slice(i, i + BATCH_SIZE);
+        try {
+          await index.upsert(batch);
+          console.log(`✅ Upserted ${batch.length} vectors`);
+        } catch (err) {
+          console.error(`❌ Failed to upsert batch:`, err);
+        }
+      }
+
+      resolve();
+    });
+
+    // Write chunks to Python's stdin
+    python.stdin.write(JSON.stringify(chunks));
+    python.stdin.end();
+  });
 }
+/**
+ * Embed a single input string using CodeBERT Python script.
+ * @param {string} inputText - The input string to embed.
+ * @returns {Promise<number[]>} - The embedding vector.
+ */
+async function getCodeBERTEmbedding(inputText) {
+  const pyScriptPath = path.resolve(__dirname, 'codebert_embed.py');
+  return new Promise((resolve, reject) => {
+    const python = spawn('python3', [pyScriptPath, '--single']);
 
-module.exports = { embedAndStoreChunks };
+    let result = '';
+    let error = '';
+
+    python.stdout.on('data', (data) => {
+      result += data.toString();
+    });
+
+    python.stderr.on('data', (data) => {
+      error += data.toString();
+    });
+
+    python.on('close', (code) => {
+      if (code !== 0 || error) {
+        return reject(`Python error: ${error}`);
+      }
+
+      try {
+        const output = JSON.parse(result);
+        if (output.embedding) {
+          resolve(output.embedding);
+        } else {
+          reject('No embedding found');
+        }
+      } catch (err) {
+        reject(`JSON parse error: ${err.message}`);
+      }
+    });
+
+    python.stdin.write(JSON.stringify({ input: inputText }));
+    python.stdin.end();
+  });
+}
+module.exports = { embedAndStoreChunks,getCodeBERTEmbedding };
